@@ -9,11 +9,11 @@ local config = wezterm.config_builder()
 -- For example, changing the initial geometry for new windows:
 config.initial_cols = 120
 config.initial_rows = 30
-line_height = 1.0
-config.font = wezterm.font_with_fallback({
-{family="Caskaydia Cove NF",weight="Regular"},
-})
-
+config.line_height = 1.0
+-- フォント設定
+config.font = wezterm.font('CaskaydiaCove Nerd Font', { weight = 'Regular' })
+-- または
+config.font = wezterm.font('CaskaydiaCove NF', { weight = 'Regular' })
 
 -- timeout_milliseconds defaults to 1000 and can be omitted
 config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 2000 }
@@ -30,8 +30,9 @@ config.keys = {
   },
 
 }
+config.audible_bell = "Disabled"
 -- or, changing the font size and color scheme.
-config.font_size = 14
+config.font_size = 16
 config.color_scheme = 'Tomorrow Night'
 config.window_background_opacity = 0.85
 --config.window_background_blur = 80
