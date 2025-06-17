@@ -93,11 +93,9 @@ source $ZSH/oh-my-zsh.sh
 # OSごとにSSHエージェントの処理を分ける
 case "$(uname)" in
     Linux)
-        # Debian/Linuxの場合: ssh-agentを起動する
-        # ターミナルごとに新しいエージェントが起動するシンプルな設定
-        eval `ssh-agent -s`
-        ;;
-
+        # Debian/Linuxの場合: Bitwardenデスクトップアプリ (Flatpak版) のSSHエージェントを使う
+        export SSH_AUTH_SOCK="/home/azusa/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"    
+       ;;
     Darwin)
         # macOSの場合: OS標準のキーチェーン機能に任せるため、何もしない
         # (以前設定した ~/.ssh/config が使われる)
