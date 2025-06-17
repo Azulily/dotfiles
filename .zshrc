@@ -90,7 +90,16 @@ zsh-autosuggestions )
 
 source $ZSH/oh-my-zsh.sh
 
-eval `keychain --eval --agents ssh id_ed25519`
+case "$(uname)" in
+   Linux)
+        # Debian (Linux) の場合: ssh-agentの管理だけを行う
+        eval $(keychain --eval --agents ssh)
+        ;;
+
+    Darwin)
+        # macOS の場合: 何もしない (macOS標準のssh-agentに任せる)
+        ;;
+esac
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
