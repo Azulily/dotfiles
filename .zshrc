@@ -90,14 +90,17 @@ zsh-autosuggestions )
 
 source $ZSH/oh-my-zsh.sh
 
+# OSごとにSSHエージェントの処理を分ける
 case "$(uname)" in
-   Linux)
-        # Debian (Linux) の場合: ssh-agentの管理だけを行う
-        eval $(keychain --eval --agents ssh)
+    Linux)
+        # Debian/Linuxの場合: ssh-agentを起動する
+        # ターミナルごとに新しいエージェントが起動するシンプルな設定
+        eval `ssh-agent -s`
         ;;
 
     Darwin)
-        # macOS の場合: 何もしない (macOS標準のssh-agentに任せる)
+        # macOSの場合: OS標準のキーチェーン機能に任せるため、何もしない
+        # (以前設定した ~/.ssh/config が使われる)
         ;;
 esac
 # User configuration
