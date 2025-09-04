@@ -5,6 +5,19 @@ local act = wezterm.action -- 【修正点1】act 変数をここで定義する
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+config.audible_bell = "Disabled"
+config.color_scheme = 'Tomorrow Night'
+config.window_background_opacity = 0.85
+config.window_decorations = "RESIZE"
+config.show_new_tab_button_in_tab_bar = false
+config.debug_key_events = true
+config.initial_cols = 120
+config.initial_rows = 30
+config.line_height = 1.0
+config.font = wezterm.font('CaskaydiaCove Nerd Font', { weight = 'Regular' })
+config.font_size = 17
+
+
 -- ステータスバーに現在のワークスペース名を表示
 wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(window:active_workspace())
@@ -35,13 +48,7 @@ wezterm.log_error("setup-workspace-layout triggered for workspace: '" .. workspa
 end)
 
 -- This is where you actually apply your config choices.
-config.initial_cols = 120
-config.initial_rows = 30
-config.line_height = 1.0
-config.font = wezterm.font('CaskaydiaCove Nerd Font', { weight = 'Regular' })
-config.font_size = 17
-
-config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 2000 }
+config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 3000 }
 
 config.keys = {
   {
@@ -84,12 +91,5 @@ for _, mod in ipairs(mods) do
     })
   end
 end
-
-config.audible_bell = "Disabled"
-config.color_scheme = 'Tomorrow Night'
-config.window_background_opacity = 0.85
-config.window_decorations = "RESIZE"
-config.show_new_tab_button_in_tab_bar = false
-config.debug_key_events = true
 
 return config
