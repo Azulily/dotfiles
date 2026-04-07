@@ -70,6 +70,12 @@ setopt share_history     # 同時に起動したzshで履歴を共有する
 
 # Ctrl + N/Pでコマンド履歴を検索する
 autoload history-search-end
+# initialize suggesion
+
+fpath=($HOME/.oh-my-zsh/plugins/ufw $fpath)
+autoload -U compinit
+compinit
+
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^N" history-beginning-search-forward-end
@@ -127,11 +133,25 @@ esac
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias hx="helix"
+# 
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export GEMINI_API_KEY="AIzaSyAjxM_bs138SIDzOH3hoTqHW4FqMghlH4w"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(starship init zsh)"
+
+# Obsidian Git Commit Alias
+obsidian_sync() {
+  local device=$(uname -n)
+  local now=$(date "+%Y-%m-%d %H:%M")
+  
+  git add .
+  # [2026-03-31 00:45][arch-laptop] update 形式
+  git commit -m "[$now][$device] ${1:-update}"
+  git push
+}
+
+alias gsync='obsidian_sync'
