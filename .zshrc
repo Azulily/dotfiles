@@ -135,3 +135,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(starship init zsh)"
+
+# Obsidian Git Commit Alias
+obsidian_sync() {
+  local device=$(uname -n)
+  local now=$(date "+%Y-%m-%d %H:%M")
+  
+  git add .
+  # [2026-03-31 00:45][arch-laptop] update 形式
+  git commit -m "[$now][$device] ${1:-update}"
+  git push
+}
+
+alias gsync='obsidian_sync'
