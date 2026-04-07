@@ -39,7 +39,7 @@ config.initial_cols = 120
 config.initial_rows = 30
 config.line_height = 1.0
 config.font = wezterm.font('CaskaydiaCove Nerd Font', { weight = 'Regular' })
-config.font_size = 17
+config.font_size = 19
 
 config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 2000 }
 
