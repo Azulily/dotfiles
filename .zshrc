@@ -147,6 +147,7 @@ eval "$(starship init zsh)"
 obsidian_sync() {
   local device=$(uname -n)
   local now=$(date "+%Y-%m-%d %H:%M")
+  git pull --no-rebase
   
   git add .
   # [2026-03-31 00:45][arch-laptop] update 形式
