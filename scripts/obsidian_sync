@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+echo "Syncing Obsidian..."
+
+device=$(uname -n)
+now=$(date "+%Y-%m-%d %H:%M")
+
+git pull --no-rebase
+
+git add .
+# [2026-03-31 00:45][arch-laptop] update 形式
+git commit -m "[$now][$device] ${1:-update}"
+git push
+
+alias gsync='obsidian_sync'

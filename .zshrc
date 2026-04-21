@@ -3,6 +3,7 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -143,16 +144,3 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(starship init zsh)"
 
-# Obsidian Git Commit Alias
-obsidian_sync() {
-  local device=$(uname -n)
-  local now=$(date "+%Y-%m-%d %H:%M")
-  git pull --no-rebase
-  
-  git add .
-  # [2026-03-31 00:45][arch-laptop] update 形式
-  git commit -m "[$now][$device] ${1:-update}"
-  git push
-}
-
-alias gsync='obsidian_sync'
